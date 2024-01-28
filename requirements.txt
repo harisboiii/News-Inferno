@@ -11,3 +11,4 @@ PyMuPDF
 langchain-community
 docarray
 llama-cpp-python
+frontend
