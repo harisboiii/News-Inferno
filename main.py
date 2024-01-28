@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import io
 import fitz
 import requests
+import frontend
 from langchain.llms import LlamaCpp
 from langchain.callbacks.base import BaseCallbackHandler
 from langchain.vectorstores import DocArrayInMemorySearch
