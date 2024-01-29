@@ -3,15 +3,16 @@ from bs4 import BeautifulSoup
 import io
 import fitz
 import requests
-import frontend
-from langchain.llms import LlamaCpp
+# from langchain.llms import LlamaCpp
 from langchain.callbacks.base import BaseCallbackHandler
-from langchain.vectorstores import DocArrayInMemorySearch
+# from langchain.vectorstores import DocArrayInMemorySearch
 from langchain.docstore.document import Document
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import DocArrayInMemorySearch
+from langchain_community.llms import LlamaCpp
 
 
 # StreamHandler to intercept streaming output from the LLM.
