@@ -3,16 +3,14 @@ from bs4 import BeautifulSoup
 import io
 import fitz
 import requests
-# from langchain.llms import LlamaCpp
+from langchain.llms import LlamaCpp
 from langchain.callbacks.base import BaseCallbackHandler
-# from langchain.vectorstores import DocArrayInMemorySearch
+from langchain.vectorstores import DocArrayInMemorySearch
 from langchain.docstore.document import Document
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import DocArrayInMemorySearch
-from langchain_community.llms import LlamaCpp
 
 
 # StreamHandler to intercept streaming output from the LLM.
@@ -57,12 +55,8 @@ def get_url_content(url):
 
         # Post processing to exclude footer content.
         # This will be different for each website.
-        if 'ARTS ON:' in text:
-            arts_on = text.index('ARTS ON:')
-            return (url, '\n'.join(text[:arts_on]))
-        else:
-            return (url, '\n'.join(text))
-
+        arts_on = text.index('ARTS ON:')
+        return (url, '\n'.join(text[:arts_on]))
 
 
 @st.cache_resource
@@ -97,7 +91,7 @@ def create_chain(_retriever):
     n_batch = 2048  # Should be between 1 and n_ctx, consider the amount of VRAM in your GPU.
 
     llm = LlamaCpp(
-            model_path="mistral-7b-instruct-v0.1.Q5_0.gguf",
+            model_path="models/mistral-7b-instruct-v0.1.Q5_0.gguf",
             n_gpu_layers=n_gpu_layers,
             n_batch=n_batch,
             n_ctx=2048,
@@ -127,11 +121,11 @@ def create_chain(_retriever):
 
 # Set the webpage title
 st.set_page_config(
-    page_title="News AI"
+    page_title="Your own AI-Chat!"
 )
 
 # Create a header element
-st.header("News AI-Chat!")
+st.header("Your own AI-Chat!")
 
 # This sets the LLM's personality.
 # The initial personality privided is basic.
