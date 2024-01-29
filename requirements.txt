@@ -6,8 +6,6 @@ pydantic
 PyMuPDF
 sentence-transformers
 streamlit
-fitz
-PyMuPDF
 langchain-community
 docarray
 llama-cpp-python
