@@ -70,7 +70,6 @@ def get_retriever(urls):
     embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
     db = DocArrayInMemorySearch.from_documents(docs, embeddings)
-    retriever = db.as_retriever(search_type="mmr", search_kwargs={"k": 5, "fetch_k": 10})
     return retriever
 
 
